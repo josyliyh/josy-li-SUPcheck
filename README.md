@@ -60,7 +60,7 @@ Safety is important for paddleboarders; people need to check weather and water c
 - Rental: boolean
 - Day Pass: boolean
 
-## Weather (Essential for Paddleboarders)
+## Weather
 - temperature_2m: decimal
 - rain: decimal
 - wind_speed_10m: decimal
