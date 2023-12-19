@@ -43,9 +43,9 @@ Safety is important for paddleboarders; people need to check weather and water c
 
 ### Sitemap
 
-- Home page
-- Locations list
+- Home page (locations list)
 - Single location info
+- Single location weather
 
 ### Mockups
 
@@ -122,4 +122,6 @@ No
 - Bug fixes
 ## Nice-to-haves
 - Intergrate Google map 
+- Favourite function 
+    - User can save their favourite location and it will show on the top of the list
 
