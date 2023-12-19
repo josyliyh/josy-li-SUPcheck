@@ -2,24 +2,24 @@
 SUPcheck
 ## Overview
 
-SUPcheck is an application for stand-up-paddleboarders to check the weather, water condition and wave before going paddleboarding. 
+SUPcheck is an application for stand-up paddleboarders to check the weather, water conditions, and waves before going paddleboarding.
 
 ### Problem
 
-Safety is important for paddleboard, people need to check weather and water condition. some beginner may not know how to read the water condition, this application will warn user if it is not suitable for paddleboard.
+Safety is important for paddleboarders; people need to check weather and water conditions. Some beginners may not know how to read the water condition. This application will warn users if it is not suitable for paddleboarding.
 
 ### User Profile
 
 - Paddleboarder:
-    - looking for spots to paddleboard in BC lower mainland.
-    - wants to check the weather before paddleboard
-    - wants to get information about where to rent a paddleboard
+    - Looking for spots to paddleboard in BC Lower Mainland.
+    - Wants to check the weather before paddleboarding.
+    - Wants information about where to rent a paddleboard.
 
 ### Features
 
-- As a user, I want to be able to check the weather and water condition of certain location.
-- As a user, I want to be able to check the closest location for paddleboard.
-- As a user, I want to be able to check paddleboard rental information.
+- As a user, I want to check the weather and water condition of a certain location.
+- As a user, I want to check the closest location for paddleboarding.
+- As a user, I want to check paddleboard rental information.
 
 ## Implementation
 
@@ -79,8 +79,6 @@ wave_period: decimal
 wind_wave_height: decimal
 wind_wave_direction: int
 wind_wave_period: decimal
-
-
 
 
 ### Endpoints
