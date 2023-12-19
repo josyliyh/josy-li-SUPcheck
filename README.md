@@ -52,34 +52,22 @@ Safety is important for paddleboarders; people need to check weather and water c
 ![Mockups](./mock-up.png)
 
 ### Data
-Location
-id: int
-name: varchar
-Longitude: decimal
-Latitude: decimal
-Rental: boolean
-Day Pass: boolean
+## Location
+- id: int
+- name: varchar
+- Longitude: decimal
+- Latitude: decimal
+- Rental: boolean
+- Day Pass: boolean
 
-Weather
-id: int
-name: varchar
-interval: int
-temperature_2m: decimal
-is_day: int
-rain: decimal
-showers: decimal
-weather_code: int
-pressure_msl: decimal
-wind_speed_10m: decimal
-wind_direction_10m: int
-wind_gusts_10m: decimal
-wave_height: decimal
-wave_direction: int
-wave_period: decimal
-wind_wave_height: decimal
-wind_wave_direction: int
-wind_wave_period: decimal
-
+## Weather (Essential for Paddleboarders)
+- temperature_2m: decimal
+- rain: decimal
+- wind_speed_10m: decimal
+- wind_direction_10m: int
+- wave_height: decimal
+- wave_direction: int
+- wave_period: decimal
 
 ### Endpoints
 
@@ -104,24 +92,16 @@ Parameters:
 
 {
     "id": 1,
-    "name": Buntzen Lake,
-    "interval": 900,
+    "name": "Buntzen Lake",
     "temperature_2m": 6.5,
-    "is_day": 0,
     "rain": 0.00,
-    "showers": 0.00,
-    "weather_code": 3,
-    "pressure_msl": 1000.1,
     "wind_speed_10m": 3.3,
     "wind_direction_10m": 131,
-    "wind_gusts_10m": 8.3,
     "wave_height": 0.06,
     "wave_direction": 292,
-    "wave_period": 2.00,
-    "wind_wave_height": 0.00,
-    "wind_wave_direction": 180,
-    "wind_wave_period": 1.00
+    "wave_period": 2.00
 }
+
 ### Auth
 
 No
