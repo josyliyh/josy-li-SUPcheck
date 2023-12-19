@@ -1,55 +1,147 @@
 # Project Title
-
+SUPcheck
 ## Overview
 
-
+SUPcheck is an application for stand-up-paddleboarders to check the weather, water condition and wave before going paddleboarding. 
 
 ### Problem
 
-Why is your app needed? Background information around any pain points or other reasons.
+Safety is important for paddleboard, people need to check weather and water condition. some beginner may not know how to read the water condition, this application will warn user if it is not suitable for paddleboard.
 
 ### User Profile
 
-Who will use your app? How will they use it? Any special considerations that your app must take into account.
+- Paddleboarder:
+    - looking for spots to paddleboard in BC lower mainland.
+    - wants to check the weather before paddleboard
+    - wants to get information about where to rent a paddleboard
 
 ### Features
 
-List the functionality that your app will include. These can be written as user stories or descriptions with related details. Do not describe _how_ these features are implemented, only _what_ needs to be implemented.
+- As a user, I want to be able to check the weather and water condition of certain location.
+- As a user, I want to be able to check the closest location for paddleboard.
+- As a user, I want to be able to check paddleboard rental information.
 
 ## Implementation
 
 ### Tech Stack
 
-List technologies that will be used in your app, including any libraries to save time or provide more functionality. Be sure to research any potential limitations.
+- React
+- TypeScript
+- MySQL
+- Express
+- Clinent libraries:
+    - react
+    - react-router
+    - axios
+- Server libraries
+    - express
+    - knex
 
 ### APIs
 
-List any external sources of data that will be used in your app.
+- open-meteo API
 
 ### Sitemap
 
-List the pages of your app with brief descriptions. You can show this visually, or write it out.
+- Home page
+- Locations list
+- Single location info
 
 ### Mockups
 
-Provide visuals of your app's screens. You can use tools like Figma or pictures of hand-drawn sketches.
+![Mockups](./mock-up.png)
 
 ### Data
+Location
+id: int
+name: varchar
+Longitude: decimal
+Latitude: decimal
+Rental: boolean
+Day Pass: boolean
 
-Describe your data and the relationships between them. You can show this visually using diagrams, or write it out. 
+Weather
+id: int
+name: varchar
+interval: int
+temperature_2m: decimal
+is_day: int
+rain: decimal
+showers: decimal
+weather_code: int
+pressure_msl: decimal
+wind_speed_10m: decimal
+wind_direction_10m: int
+wind_gusts_10m: decimal
+wave_height: decimal
+wave_direction: int
+wave_period: decimal
+wind_wave_height: decimal
+wind_wave_direction: int
+wind_wave_period: decimal
+
+
+
 
 ### Endpoints
 
-List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
+GET /locations/:id
+- Get location by id
+Parameters:
+- id: location id as number
 
+{
+    "id": 1,
+    "name": Buntzen Lake,
+    "Latitude": 49.350626,
+    "Longitude": -122.859859,
+    "Rental": No,
+    "Day Pass": Yes
+}
+
+GET /location/:id/weather
+- Get weather by id
+Parameters:
+- id: location id as number
+
+{
+    "id": 1,
+    "name": Buntzen Lake,
+    "interval": 900,
+    "temperature_2m": 6.5,
+    "is_day": 0,
+    "rain": 0.00,
+    "showers": 0.00,
+    "weather_code": 3,
+    "pressure_msl": 1000.1,
+    "wind_speed_10m": 3.3,
+    "wind_direction_10m": 131,
+    "wind_gusts_10m": 8.3,
+    "wave_height": 0.06,
+    "wave_direction": 292,
+    "wave_period": 2.00,
+    "wind_wave_height": 0.00,
+    "wind_wave_direction": 180,
+    "wind_wave_period": 1.00
+}
 ### Auth
 
-Does your project include any login or user profile functionality? If so, describe how authentication/authorization will be implemented.
+No
 
 ## Roadmap
 
-Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation. Think about what you can reasonably complete before the due date. The more detail you provide, the easier it will be to build.
-
+- Create client
+    - react project with routes and pages
+- Create server
+    - express project with routing with 15 locations
+    - create endpoint to fetch data from api
+- Feature: List locations 
+    - Create GET /locations endpoint
+- Feature: Single location
+    - Create GET /location/:id
+- Feature: Single location weather
+    - Create GET /location/:id/weather
+- Bug fixes
 ## Nice-to-haves
+- Intergrate Google map 
 
-Your project will be marked based on what you committed to in the above document. Under nice-to-haves, you can list any additional features you may complete if you have extra time, or after finishing.
