@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 import { URL, PORT } from "../../assets/urls/urls";
 
 
@@ -33,11 +34,13 @@ const LocationList = ({ selectedCity }) => {
     <div>
       <h2>Locations</h2>
       <div className="location-list">
-        {filteredLocations.map((location, index) => (
-          <div key={index} className="location-card">
+        {filteredLocations.map((location) => (
+             <Link   key={location.id} to={`/${location.id}`}>
+          <div className="location-card">
             <h3>{location.name}</h3>
             <p>City: {location.city}</p>
           </div>
+          </Link>
         ))}
       </div>
     </div>
