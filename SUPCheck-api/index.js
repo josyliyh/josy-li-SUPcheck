@@ -5,13 +5,12 @@ const app = express();
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8080
-const locationRoutes = require('./routes/location-routes')
+const locationsRoutes = require('./routes/locations-routes');
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/locations", locationsRoutes)
-
+app.use("/", locationsRoutes);
 
 
 app.listen(PORT, () => {

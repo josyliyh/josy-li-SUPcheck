@@ -1,35 +1,109 @@
+const axios = require('axios');
 const knex = require("knex")(require("../knexfile"));
 
-const getAllLocations = async (_req, res) => {
-    try {
-      const locationsFound = await knex('locations');
-      res.status(200).send(locationsFound);
-    } catch (error) {
-      res.status(500).json({ error: 'Internal Server Error' });
+// Function to get all locations
+const getAllLocations = async (req, res) => {
+  try {
+    const locationsFound = await knex('locations');
+    res.status(200).send(locationsFound);
+  } catch (error) {
+    console.error('Error retrieving all locations:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// Function to get one location
+const getOneLocation = async (req, res) => {
+  try {
+    const locationId = req.params.id;
+    const locationFound = await knex('locations')
+      .select('*')
+      .where('id', locationId)
+      .first();
+
+    if (!locationFound) {
+      return res.status(404).json({ error: 'Location not found' });
     }
-  };
-  
-  const getOneLocation = async (req, res) => {
+
+    res.status(200).json(locationFound);
+  } catch (error) {
+    console.error('Error retrieving single location:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// Function to fetch weather data by coordinates
+const getWeatherByCoordinates = async (latitude, longitude) => {
     try {
-      const locationId = req.params.id;
-      const locationFound = await knex('locations')
-        .select('*')
-        .where('id', locationId)
-        .first();
-  
-      if (locationFound) {
-        delete locationFound.created_at;
-        delete locationFound.updated_at;
-        res.status(200).json(locationFound);
-      } else {
-        res.status(404).json({ error: 'Location not found' });
-      }
+        const weatherAPIURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,rain&forecast_days=3`;
+        const response = await axios.get(weatherAPIURL);
+        return response.data; // Assuming the API response contains the weather data
     } catch (error) {
-      res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error fetching weather data:', error);
+        throw new Error('Error fetching weather data from the API');
     }
-  };
-  
-  module.exports = {
-    getAllLocations,
-    getOneLocation,
-  };
+};
+
+// Function to fetch temperature and rain forecast data by coordinates
+const getTemperatureAndRainForecast = async (latitude, longitude) => {
+    try {
+        const temperatureAPIURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,rain&forecast_days=3`;
+        const response = await axios.get(temperatureAPIURL);
+        return response.data; // Assuming the API response contains temperature and rain forecast data
+    } catch (error) {
+        console.error('Error fetching temperature and rain forecast data:', error);
+        throw new Error('Error fetching temperature and rain forecast from the API');
+    }
+};
+
+const getLocationById = async (id) => {
+    try {
+        const location = await knex('locations')
+            .select('*')
+            .where('id', id)
+            .first();
+        return location;
+    } catch (error) {
+        console.error('Error fetching location from the database:', error);
+        throw new Error('Error fetching location from the database');
+    }
+};
+
+const getLocationAndWeather = async (req, res) => {
+    try {
+        const locationId = req.params.id;
+        const location = await getLocationById(locationId);
+        
+        if (!location) {
+            return res.status(404).json({ error: 'Location not found' });
+        }
+
+        const { Latitude, Longitude } = location;
+
+        // Ensure Latitude and Longitude are valid 
+        if (Latitude && Longitude) {
+            // Use the fetched coordinates to fetch weather data
+            const weatherData1 = await getWeatherByCoordinates(Latitude, Longitude);
+            const weatherData2 = await getTemperatureAndRainForecast(Latitude, Longitude);
+
+            // Combine location info and weather data
+            const locationWithWeather = {
+                locationInfo: location,
+                weatherData1, 
+                weatherData2, 
+            };
+
+            return res.status(200).json(locationWithWeather);
+        } else {
+            return res.status(400).json({ error: 'Invalid latitude or longitude' });
+        }
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+module.exports = {
+  getAllLocations,
+  getLocationAndWeather,
+  getOneLocation
+};
