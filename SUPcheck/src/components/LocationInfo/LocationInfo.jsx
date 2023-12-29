@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 function LocationInfo (){
     const [locationData, setLocationData] = useState({});
+    const [weatherData, setWeatherData] = useState({});
     const { id } = useParams();
   
     useEffect(() => {
@@ -28,7 +29,7 @@ function LocationInfo (){
         return value ? 'Yes' : 'No';
       };
       
- 
+
       const generateGoogleMapsUrl = (apiKey, locationName) => {
         const encodedLocationName = encodeURIComponent(locationName);
         return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodedLocationName}`;
@@ -49,6 +50,25 @@ function LocationInfo (){
           ></iframe>
         );
       };
+
+        
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8080/${id}/weather`);
+          if (response.status === 200) {
+            setWeatherData(response.data);
+
+          } else {
+            throw new Error('Failed to fetch data');
+          }
+        } catch (error) {
+          console.error('Error fetching location data:', error);
+        }
+      };
+  
+      fetchData();
+    }, [id]);
     return (
       <div>
         <h2>Location Information</h2>

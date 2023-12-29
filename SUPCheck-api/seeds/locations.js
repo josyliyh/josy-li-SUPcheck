@@ -68,11 +68,11 @@
     },
     {
       id: 7,
-      name: 'Buntzen Lake',
-      address: 'Village of Anmore, BC', // Placeholder address
-      city: 'Anmore',
-      Latitude: 49.3506,
-      Longitude: -122.8598,
+      name: 'Deep Cove',
+      address: '2890 Panorama Dr, North Vancouver, BC V7G 1V6',
+      city: 'North Vancouver',
+      Latitude: 49.3266,
+      Longitude: -122.9474,
       Rental: false,
       DayPass: false
     },
@@ -109,7 +109,7 @@
     {
       id: 11,
       name: 'Third Beach',
-      address: 'Stanley Park Seawall', // Placeholder address
+      address: 'Ferguson Point Stanley Park Drive Vancouver, BC V6G 3E2',
       city: 'Vancouver',
       Latitude: 49.2948,
       Longitude: -123.1489,
@@ -128,11 +128,11 @@
     },
     {
       id: 13,
-      name: 'Port Moody Inlet',
-      address: 'Port Moody, BC', // Placeholder address
-      city: 'Port Moody',
-      Latitude: 49.2921,
-      Longitude: -122.8376,
+      name:'Buntzen Lake',
+      address: '5000 Sunnyside Rd, Anmore, BC V3H 4Z2',
+      city: 'Anmore',
+      Latitude: 49.3506,
+      Longitude: -122.8598,
       Rental: false,
       DayPass: false
     },
@@ -143,16 +143,6 @@
       city: 'Port Moody',
       Latitude: 49.2996,
       Longitude: -122.8664,
-      Rental: false,
-      DayPass: false
-    },
-    {
-      id: 15,
-      name: 'Deep Cove',
-      address: 'North Vancouver, BC', // Placeholder address
-      city: 'North Vancouver',
-      Latitude: 49.3266,
-      Longitude: -122.9474,
       Rental: false,
       DayPass: false
     }

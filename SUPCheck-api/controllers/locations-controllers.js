@@ -34,10 +34,9 @@ const getOneLocation = async (req, res) => {
 };
 
 // Function to fetch weather data by coordinates
-const getWeatherByCoordinates = async (latitude, longitude) => {
+const getWeatherForcast = async (latitude, longitude) => {
     try {
-        const weatherAPIURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,rain&forecast_days=3`;
-        const response = await axios.get(weatherAPIURL);
+      const weatherAPIURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation,visibility,wind_speed_10m,wind_gusts_10m&forecast_days=3`;        const response = await axios.get(weatherAPIURL);
         return response.data; // Assuming the API response contains the weather data
     } catch (error) {
         console.error('Error fetching weather data:', error);
@@ -46,16 +45,17 @@ const getWeatherByCoordinates = async (latitude, longitude) => {
 };
 
 // Function to fetch temperature and rain forecast data by coordinates
-const getTemperatureAndRainForecast = async (latitude, longitude) => {
-    try {
-        const temperatureAPIURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,rain&forecast_days=3`;
-        const response = await axios.get(temperatureAPIURL);
-        return response.data; // Assuming the API response contains temperature and rain forecast data
-    } catch (error) {
-        console.error('Error fetching temperature and rain forecast data:', error);
-        throw new Error('Error fetching temperature and rain forecast from the API');
-    }
+const getMarineForcast = async (latitude, longitude) => {
+  try {
+      const marineAPIURL = `https://marine-api.open-meteo.com/v1/marine?latitude=${latitude}&longitude=${longitude}&hourly=wave_height&length_unit=metric&forecast_days=3`;
+      const response = await axios.get(marineAPIURL);
+      return response.data; // Assuming the API response contains wave height marine forecast data
+  } catch (error) {
+      console.error('Error fetching marine forecast data:', error);
+      throw new Error('Error fetching marine forecast from the API');
+  }
 };
+
 
 const getLocationById = async (id) => {
     try {
@@ -84,8 +84,8 @@ const getLocationAndWeather = async (req, res) => {
         // Ensure Latitude and Longitude are valid 
         if (Latitude && Longitude) {
             // Use the fetched coordinates to fetch weather data
-            const weatherData1 = await getWeatherByCoordinates(Latitude, Longitude);
-            const weatherData2 = await getTemperatureAndRainForecast(Latitude, Longitude);
+            const weatherData1 = await getWeatherForcast(Latitude, Longitude);
+            const weatherData2 = await getMarineForcast(Latitude, Longitude);
 
             // Combine location info and weather data
             const locationWithWeather = {
