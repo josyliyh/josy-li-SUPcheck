@@ -12,4 +12,10 @@ router.get('/:id', locationsController.getOneLocation);
 // Route for getting weather info by location ID
 router.get('/:id/weather', locationsController.getLocationAndWeather);
 
+// Route for getting image by location ID
+router.get('/:id/image', locationsController.getLocationImage);
+
+
+
+  
 module.exports = router;

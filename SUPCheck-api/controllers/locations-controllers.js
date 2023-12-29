@@ -25,6 +25,7 @@ const getOneLocation = async (req, res) => {
       return res.status(404).json({ error: 'Location not found' });
     }
 
+
     res.status(200).json(locationFound);
   } catch (error) {
     console.error('Error retrieving single location:', error);
@@ -102,8 +103,57 @@ const getLocationAndWeather = async (req, res) => {
     }
 };
 
+// Function to get an image by id
+
+const getLocationImage = async (req, res) => {
+  try {
+      const locationId = req.params.id;
+      const location = await getLocationById(locationId);
+      
+      if (!location) {
+          return res.status(404).json({ error: 'Location not found' });
+      }
+
+      const { name } = location;
+
+      // Ensure name is valid 
+      if (name) {
+        const apiKey = 'AIzaSyC2cJy54-ajAGRqG0WoPovgW1Gowt4S8i0';
+
+        // Get Place ID by location name
+        const placeIdUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(name)}&inputtype=textquery&fields=place_id&key=${apiKey}`;
+        const placeIdResponse = await axios.get(placeIdUrl);
+        const placeId = placeIdResponse.data.candidates[0]?.place_id;
+    
+        if (!placeId) {
+          throw new Error('Place ID not found');
+        }
+    
+        // Get photo reference by Place ID
+        const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=photos&key=${apiKey}`;
+        const placeDetailsResponse = await axios.get(placeDetailsUrl);
+        const photoReference = placeDetailsResponse.data.result?.photos[0]?.photo_reference;
+    
+        if (!photoReference) {
+          throw new Error('Photo reference not found');
+        }
+    
+        // Get image URL using photo reference
+        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${apiKey}`;
+        
+
+          return res.status(200).json(imageUrl);
+      } else {
+          return res.status(400).json({ error: 'Invalid name' });
+      }
+  } catch (error) {
+      return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 module.exports = {
   getAllLocations,
   getLocationAndWeather,
-  getOneLocation
+  getOneLocation,
+  getLocationImage 
 };
