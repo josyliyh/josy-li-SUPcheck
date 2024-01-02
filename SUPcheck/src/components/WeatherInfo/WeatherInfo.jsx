@@ -30,7 +30,7 @@ function WeatherInfo() {
     setSelectedDate(date);
     console.log('Selected date:', date);
   };
-
+  
   const handleHourSelection = (hour) => {
     setSelectedHour(hour);
     console.log('Selected hour:', hour);
@@ -97,13 +97,27 @@ function WeatherInfo() {
         <button onClick={() => handleDateSelection(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0])}>Tomorrow</button>
         <button onClick={() => handleDateSelection(new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])}>Day After</button>
       </div>
-      <hr />
-      <div>
-        {hours.map((hour) => (
-          <button key={hour} onClick={() => handleHourSelection(`${hour}:00`)}>{`${hour}:00`}</button>
-        ))}
+    
+      <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <div style={{ width: '100%', position: 'relative' }}>
+          <input
+            type="range"
+            min="0"
+            max="23"
+            step="1"
+            style={{ width: '100%' }}
+            onChange={(e) => handleHourSelection(`${String(e.target.value).padStart(2, '0')}:00`)}
+          />
+          <div style={{ display: 'flex', justifyContent: 'space-between', position: 'absolute', bottom: '-20px', width: '100%' }}>
+            {Array.from({ length: 24 }, (_, i) => (
+              <span key={i} style={{ flex: '1', textAlign: 'center' }}>
+                {i}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
-      <hr />
+  
       {displayWeather()}
     </div>
   );
