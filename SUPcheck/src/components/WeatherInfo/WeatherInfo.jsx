@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 function WeatherInfo() {
   const [weatherData, setWeatherData] = useState({});
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // Default to current date
   const [selectedHour, setSelectedHour] = useState('00:00');
   const { id } = useParams();
 
@@ -71,10 +71,7 @@ function WeatherInfo() {
     if (!selectedWeather) {
       return <p>Please select a valid time</p>;
     }
-
-    
   
-
     return (
       <div>
         <h3>Selected Time: {selectedTime || new Date().toISOString().slice(0, 16)}</h3>
