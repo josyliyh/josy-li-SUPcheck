@@ -36,7 +36,8 @@ const getOneLocation = async (req, res) => {
 // Function to fetch weather data by coordinates
 const getWeatherForcast = async (latitude, longitude) => {
     try {
-      const weatherAPIURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation,visibility,wind_speed_10m,wind_gusts_10m&forecast_days=3&timezone=America%2FLos_Angeles`;        const response = await axios.get(weatherAPIURL);
+      const weatherAPIURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation,visibility,wind_speed_10m,wind_gusts_10m,weather_code&daily=sunrise,sunset&forecast_days=3&timezone=America%2FLos_Angeles`;      
+        const response = await axios.get(weatherAPIURL);
         return response.data; // Assuming the API response contains the weather data
     } catch (error) {
         console.error('Error fetching weather data:', error);
@@ -44,7 +45,7 @@ const getWeatherForcast = async (latitude, longitude) => {
     }
 };
 
-// Function to fetch temperature and rain forecast data by coordinates
+// Function to fetch marine data by coordinates
 const getMarineForcast = async (latitude, longitude) => {
   try {
       const marineAPIURL = `https://marine-api.open-meteo.com/v1/marine?latitude=${latitude}&longitude=${longitude}&hourly=wave_height&length_unit=metric&forecast_days=3&timezone=America%2FLos_Angeles`;
