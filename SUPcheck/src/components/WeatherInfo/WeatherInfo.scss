@@ -1,0 +1,27 @@
+
+.info-title {
+    display: none;
+}
+
+
+.weather {
+    &__header {
+    
+        display: flex;
+        justify-content: space-around;
+    }
+    &__title {
+        flex-basis: 12.5%;
+        text-align: center;
+    }
+&__info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &-item {
+        flex-basis: 12.5%;
+        text-align: center;
+
+    }
+}
+}

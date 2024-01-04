@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import WMOWeatherCode from "../../assets/WMO/WMO";
@@ -8,8 +8,9 @@ function WeatherInfo() {
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0]
   );
+  const [selectedHour, setSelectedHour] = useState("00:00");
+  const [selectedDay, setSelectedDay] = useState("0");
   const { id } = useParams();
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,103 +25,135 @@ function WeatherInfo() {
         console.error("Error fetching location data:", error);
       }
     };
-
     fetchData();
   }, [id]);
-
   const handleDateSelection = (date) => {
     setSelectedDate(date);
-    console.log("Selected date:", selectedDate);
+    console.log("Selected date:", date);
   };
-
+  const handleHourSelection = (hour) => {
+    setSelectedHour(hour);
+    console.log("Selected hour:", hour);
+  };
   const displayWeather = () => {
-    const selectedWeatherData1 = weatherData["weatherData1"];
-    const selectedWeatherData2 = weatherData["weatherData2"];
+    const selectedTime = `${selectedDate}T${selectedHour}`;
+    let selectedWeather = {};
 
-    if (!selectedWeatherData1 || !selectedWeatherData2) {
-      return <p>No weather information available</p>;
+    const weatherData1 = weatherData["weatherData1"];
+    const weatherData2 = weatherData["weatherData2"];
+
+    if (
+      weatherData1 &&
+      weatherData1.hourly &&
+      weatherData2 &&
+      weatherData2.hourly
+    ) {
+      const selectedWeather1 = weatherData1.hourly.time.findIndex(
+        (time) => time === selectedTime
+      );
+      const selectedWeather2 = weatherData2.hourly.time.findIndex(
+        (time) => time === selectedTime
+      );
+
+      const weatherCode = weatherData1.hourly.weather_code[selectedWeather1];
+      console.log(selectedDay);
+      const sunsetTime = weatherData1.daily.sunset[selectedDay];
+      const sunriseTime = weatherData1.daily.sunrise[selectedDay];
+      console.log("rise", sunriseTime);
+      console.log(selectedTime);
+      function isDaytime(selectedTime, sunriseTime, sunsetTime) {
+        const selectedHour = new Date(selectedTime).getHours();
+        const sunriseHour = new Date(sunriseTime).getHours();
+        const sunsetHour = new Date(sunsetTime).getHours();
+
+        return selectedHour >= sunriseHour && selectedHour < sunsetHour;
+      }
+
+      const isDay = isDaytime(selectedTime, sunriseTime, sunsetTime);
+
+      const weatherInfo = isDay
+        ? WMOWeatherCode[weatherCode]?.day
+        : WMOWeatherCode[weatherCode]?.night;
+
+      const weatherDescription =
+        weatherInfo?.description || "Weather description not available";
+
+      const weatherImage = weatherInfo?.image || "Weather image not available";
+
+      if (selectedWeather1 !== -1) {
+        selectedWeather = {
+          ...selectedWeather,
+          image: weatherImage,
+          description: weatherDescription,
+          temperature: `${weatherData1.hourly.temperature_2m[selectedWeather1]} °C`,
+          precipitation: weatherData1.hourly.precipitation[selectedWeather1],
+          visibility: `${weatherData1.hourly.visibility[selectedWeather1]} m`,
+          wind_speed: `${weatherData1.hourly.wind_speed_10m[selectedWeather1]} kph`,
+          wind_gusts: `${weatherData1.hourly.wind_gusts_10m[selectedWeather1]} kph`,
+        };
+      }
+
+      if (selectedWeather2 !== -1) {
+        selectedWeather = {
+          ...selectedWeather,
+          wave_height: `${weatherData2.hourly.wave_height[selectedWeather2]} m`,
+        };
+      }
+    } else {
+      return <p>Weather data not available or has an unexpected format</p>;
     }
 
-    const selectedWeatherIndex = selectedWeatherData1.hourly.time.findIndex(
-      (time) => time.split("T")[0] === selectedDate
-    );
-
-    if (selectedWeatherIndex === -1) {
-      return <p>No weather information available for the selected date</p>;
+    if (!selectedWeather) {
+      return <p>Please select a valid time</p>;
     }
-
     return (
-      <div className="weather-container">
-        <h3>Date: {selectedDate}</h3>
-        {selectedWeatherData1.hourly.time.map((time, index) => {
-          if (time.split("T")[0] === selectedDate) {
-            const waveHeight = selectedWeatherData2.hourly.wave_height[index];
-            const windSpeed = selectedWeatherData1.hourly.wind_speed_10m[index];
-            const windGust = selectedWeatherData1.hourly.wind_gusts_10m[index];
-
-            const weatherCode = selectedWeatherData1.hourly.weather_code[index];
-            const hour = parseInt(time.split('T')[1].split(':')[0]); 
-            const isDayTime = hour >= 6 && hour < 18; // Check if it's day time
-            
-            // Extract the corresponding weather description based on day/night and weather code
-            const weatherInfo = isDayTime
-              ? WMOWeatherCode[weatherCode]?.day
-              : WMOWeatherCode[weatherCode]?.night;
-            
-            // Use the weather description obtained from WMOWeatherCode
-            const weatherDescription = weatherInfo?.description || "Weather description not available";
-            
-            const weatherImage = weatherInfo?.image || "Weather image not available";
-
-
-            return (
-              <div className="weather-info" key={index}>
-                <h4>{hour}</h4>
-
-                <div className="info-item">
-                  <img src={weatherImage} alt={weatherDescription}  />
-    
-                  <span className="info-value">{weatherDescription}</span>
-                </div>
-                <div className="info-item">
-                  <span className="info-title">Temperature:</span>
-                  <span className="info-value">
-                    {selectedWeatherData1.hourly.temperature_2m[index]} °C
-                  </span>
-                </div>
-                <div className="info-item">
-                  <span className="info-title">Precipitation:</span>
-                  <span className="info-value">
-                    {selectedWeatherData1.hourly.precipitation[index]} mm
-                  </span>
-                </div>
-                <div className="info-item">
-                  <span className="info-title">Visibility:</span>
-                  <span className="info-value">
-                    {selectedWeatherData1.hourly.visibility[index]} m
-                  </span>
-                </div>
-                <div className="info-item">
-                  <span className="info-title">Wind Speed:</span>
-                  <span className="info-value">{windSpeed} km/h</span>
-                </div>
-                <div className="info-item">
-                  <span className="info-title">Wind Gust:</span>
-                  <span className="info-value">{windGust} km/h</span>
-                </div>
-                <div className="info-item">
-                  <span className="info-title">Wave Height:</span>
-                  <span className="info-value">{waveHeight} m</span>
-                </div>
-              </div>
-            );
-          }
-          return null;
-        })}
+      <div>
+        <h3>
+          Selected Time: {selectedTime || new Date().toISOString().slice(0, 16)}
+        </h3>
+        <ul>
+          <li className="weather__data">
+            {selectedWeather.image && (
+              <img
+                src={selectedWeather.image}
+                alt={selectedWeather.description}
+                className="weather__image"
+              />
+            )}
+          </li>
+          <li className="weather__data">
+            <h4 className="weather__title">DESCRIPTION</h4>
+            <p className="weather__value">{selectedWeather.description}</p>
+          </li>
+          <li className="weather__data">
+            <h4 className="weather__title">TEMPERATURE</h4>
+            <p className="weather__value">{selectedWeather.temperature}</p>
+          </li>
+          <li className="weather__data">
+            <h4 className="weather__title">WIND SPEED:</h4>
+            <p className="weather__value">{selectedWeather.wind_speed}</p>
+          </li>
+          <li className="weather__data">
+            <h4 className="weather__title">WIND GUSTS:</h4>
+            <p className="weather__value">{selectedWeather.wind_gusts}</p>
+          </li>
+          <li className="weather__data">
+            <h4 className="weather__title">PRECIPITATION</h4>
+            <p className="weather__value">{selectedWeather.precipitation}</p>
+          </li>
+          <li className="weather__data">
+            <h4 className="weather__title">VISIBILITY</h4>
+            <p className="weather__value">{selectedWeather.visibility}</p>
+          </li>
+          <li className="weather__data">
+            <h4 className="weather__title">WAVE HEIGHT:</h4>
+            <p className="weather__value">{selectedWeather.wave_height}</p>
+          </li>
+        </ul>
       </div>
     );
   };
-
+  const hours = Array.from({ length: 24 }, (_, i) => `0${i}`.slice(-2));
   return (
     <div>
       <h2>Weather Information for ID: {id}</h2>
@@ -156,9 +189,45 @@ function WeatherInfo() {
         </button>
       </div>
 
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <div style={{ width: "100%", position: "relative" }}>
+          <input
+            type="range"
+            min="0"
+            max="23"
+            step="1"
+            style={{ width: "100%" }}
+            onChange={(e) =>
+              handleHourSelection(
+                `${String(e.target.value).padStart(2, "0")}:00`
+              )
+            }
+          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              position: "absolute",
+              bottom: "-20px",
+              width: "100%",
+            }}
+          >
+            {Array.from({ length: 24 }, (_, i) => (
+              <span key={i} style={{ flex: "1", textAlign: "center" }}>
+                {i}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
       {displayWeather()}
     </div>
   );
 }
-
 export default WeatherInfo;

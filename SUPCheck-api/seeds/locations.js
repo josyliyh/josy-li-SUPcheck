@@ -78,11 +78,11 @@
     },
     {
       id: 8,
-      name: 'Ambleside Beach',
-      address: '1150 Marine Dr, West Vancouver, BC V7T 1B1',
-      city: 'West Vancouver',
-      Latitude: 49.3270,
-      Longitude: -123.1551,
+      name: 'Cates Park',
+      address: '4141 Dollarton Hwy, North Vancouver, BC V7G 1A1',
+      city: 'North Vancouver',
+      Latitude: 49.3030,
+      Longitude: -122.9553,
       Rental: false,
       DayPass: false
     },
