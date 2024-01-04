@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { URL, PORT } from "../../assets/urls/urls";
+import "./CityList.scss"
 
 function CityList ({ onCityChange }) {
   const [cities, setCities] = useState([]);
@@ -42,9 +43,9 @@ function CityList ({ onCityChange }) {
   };
 
   return (
-    <div>
-      <select value={selectedCity}  onChange={handleCityChange}>
-        <option value="">Select a city</option>
+    <div className='city'>
+      <select value={selectedCity}  onChange={handleCityChange} className="city__menu">
+        <option value="" className="city__option">Select a city</option>
         {cities.map((city, index) => (
           <option key={index} value={city.city}>
             {city.city}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { URL, PORT } from '../../assets/urls/urls';
+import "./LocationList.scss"
 
 const LocationList = ({ selectedCity }) => {
   const [locations, setLocations] = useState([]);
@@ -60,15 +61,17 @@ const LocationList = ({ selectedCity }) => {
 
   return (
     <div>
-      <h2>Locations</h2>
-      <div className="location-list">
+
+      <div className="location__list">
         {filteredLocations.map((location) => (
           <Link key={location.id} to={`/${location.id}`}>
-            <div className="location-card">
-              <h3>{location.name}</h3>
-              <p>City: {location.city}</p>
+            <div className="location">
+            <div className="location__info">
+              <h2 className='location__name'>{location.name}</h2>
+              <p className='location__city'>{location.city}</p>
+              </div>
               {location.imageUrl && (
-                <img src={location.imageUrl} alt={`Image for ${location.name}`} />
+                <img className='location__image' src={location.imageUrl} alt={`Image for ${location.name}`} />
               )}
             </div>
           </Link>
