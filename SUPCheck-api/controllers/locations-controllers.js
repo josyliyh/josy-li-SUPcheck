@@ -140,7 +140,7 @@ const getLocationImage = async (req, res) => {
         }
     
         // Get image URL using photo reference
-        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${apiKey}`;
+        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${photoReference}&key=${apiKey}`;
         
 
           return res.status(200).json(imageUrl);

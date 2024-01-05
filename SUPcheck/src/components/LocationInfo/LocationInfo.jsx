@@ -87,25 +87,29 @@ function LocationInfo (){
     }, [id]);
     return (
       <div className='spot'>
+        <div className="spot__image--container">
+        <h2 className='spot__name'>{locationData.name}</h2>
         <img src={imageUrl} alt="" className="spot__image" />
-        <h2>{locationData.name}</h2>
-        <ul>
+        </div>
        
-          <li>
-          <strong>Rental:</strong> {displayBooleanValue(locationData.Rental)}
+        <ul className='spot__infoList'>
+       
+          <li className='spot__info'>
+          <strong>Rental</strong> {displayBooleanValue(locationData.Rental)}
         </li>
-        <li>
-          <strong>DayPass:</strong> {displayBooleanValue(locationData.DayPass)}
+        <li className='spot__info'>
+          <strong>DayPass</strong> {displayBooleanValue(locationData.DayPass)}
         </li>
-          <li>
-            <strong>City:</strong> {locationData.city}
+          <li className='spot__info'>
+            <strong>City</strong> {locationData.city}
           </li>
-          <li>
-            <strong>Address:</strong> {locationData.address}
-          </li>
+          </ul>
+
+            <strong>Address</strong> {locationData.address}
+      
           {locationData.name && embedGoogleMap('AIzaSyC2cJy54-ajAGRqG0WoPovgW1Gowt4S8i0', locationData.name)}
 
-        </ul>
+     
       </div>
     );
 }
