@@ -212,6 +212,7 @@ function WeatherInfo() {
               )
             }
           />
+           <label for="range" id="value"></label>
           <div className="hour-labels-wrapper">
             {Array.from({ length: 12 }, (_, i) => (
               <span key={i * 2} className="hour-label">

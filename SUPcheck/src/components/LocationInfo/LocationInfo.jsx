@@ -96,15 +96,15 @@ function LocationInfo (){
        
         <ul className='spot__infoList'>
        
-          <li className='spot__info'>
-          <strong>Rental</strong> {displayBooleanValue(locationData.Rental)}
-        </li>
         <li className='spot__info'>
-          <strong>DayPass</strong> {displayBooleanValue(locationData.DayPass)}
-        </li>
-          <li className='spot__info'>
-            <strong>City</strong> {locationData.city}
-          </li>
+  <p className='spot__title'>Rental</p> {displayBooleanValue(locationData.Rental)}
+</li>
+<li className='spot__info'>
+  <p className='spot__title'>DayPass</p> {displayBooleanValue(locationData.DayPass)}
+</li>
+<li className='spot__info'>
+  <p className='spot__title'>City</p> {locationData.city}
+</li>
           </ul>
 
             {/* <strong>Address</strong> {locationData.address} */}
