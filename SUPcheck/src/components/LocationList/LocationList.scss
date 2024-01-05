@@ -5,33 +5,37 @@
   position: relative;
   border-radius: 1.5rem;
   overflow: hidden;
-  width: 20rem;
+  width: 80vw;
   height: 12rem;
-  @include tablet{
-    width: 30rem;
+  @include box-shadow;
+  @include tablet {
+    width: 45vw;
+    max-width: 40rem;
   }
 
   &__list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: flex-end;
     align-content: center;
     gap: 1rem;
+    @include desktop {
+      gap: 1.5rem;
+    }
   }
 
   &__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: brightness(90%);
     opacity: 1;
 
-
-&:hover {
-
-    opacity: 0.7;
-}
-}
+    &:hover {
+      opacity: 0.7;
+    }
+  }
   &__info {
     position: absolute;
     bottom: 2rem;
@@ -41,7 +45,7 @@
   }
   &__name,
   &__city {
-   color: $white;
+    color: $white;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2); /* Adding text shadow */
   }
   &__city {

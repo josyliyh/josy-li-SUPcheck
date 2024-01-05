@@ -23,6 +23,8 @@
     object-fit: cover;
     filter: brightness(80%);
     max-width: 40rem;
+    @include box-shadow;
+
   }
   &__infoList {
     display: flex;
@@ -34,9 +36,11 @@
   &__map {
     width: 80%;
     border-radius: 1.5rem;
+    @include box-shadow;
     &--wrapper {
         display: flex;
-        justify-content: space-around
+        justify-content: space-around;
+    
     }
   }
   &__info {
@@ -49,14 +53,21 @@
     justify-content: center;
     position: relative;
     width: 100%;
+    align-items: center;
+    @include box-shadow;
   }
   &__title {
     font-size: 0.7rem;
     position: absolute;
     top: 20%;
     left: 20%;
+    color: $white;
+    font-weight: bold;
+    text-transform: uppercase;
   }
-  &__title {
-      color: $white;
+ 
+  &__value {
+      color: white;
+      font-size: 1.2rem;
   }
 }

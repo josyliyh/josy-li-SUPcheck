@@ -11,5 +11,6 @@
         outline: none;
         border: none;
         margin: 1rem auto;
-        background-color: $yellow;
+        background-color: $blue-lighter;
+        @include box-shadow;
     }}
