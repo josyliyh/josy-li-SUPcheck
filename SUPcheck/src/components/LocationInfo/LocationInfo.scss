@@ -31,8 +31,12 @@
     margin: 1rem;
   }
   &__map {
-    width: 100%;
+    width: 80%;
     border-radius: 1.5rem;
+    &--wrapper {
+        display: flex;
+        justify-content: space-around
+    }
   }
   &__info {
     display: flex;

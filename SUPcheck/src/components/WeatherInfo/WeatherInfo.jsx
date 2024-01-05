@@ -2,14 +2,16 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import WMOWeatherCode from "../../assets/WMO/WMO";
+import "./WeatherInfo.scss";
 
 function WeatherInfo() {
   const [weatherData, setWeatherData] = useState({});
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0]
   );
-  const [selectedHour, setSelectedHour] = useState("12:00");
+  const [selectedHour, setSelectedHour] = useState("23:00");
   const [selectedDay, setSelectedDay] = useState("0");
+
   const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
@@ -61,6 +63,7 @@ function WeatherInfo() {
       const weatherCode = weatherData1.hourly.weather_code[selectedWeather1];
       console.log("Day", selectedDay);
       const sunsetTime = weatherData1.daily.sunset[selectedDay];
+
       const sunriseTime = weatherData1.daily.sunrise[selectedDay];
       console.log("rise", sunriseTime);
       console.log(selectedTime);
@@ -105,17 +108,19 @@ function WeatherInfo() {
     } else {
       return <p>Weather data not available or has an unexpected format</p>;
     }
-
+    const dateTime = new Date(selectedTime);
+    const formattedDateTime = dateTime.toLocaleString();
     if (!selectedWeather) {
       return <p>Please select a valid time</p>;
     }
     return (
       <div>
-        <h3>
-          Selected Time: {selectedTime || new Date().toISOString().slice(0, 16)}
-        </h3>
-        <ul>
-          <li className="weather__data">
+        <h2 className="weather__wrapper--title">
+          Ready for Paddleboarding on...
+          {formattedDateTime || new Date().toISOString().split("T")[0]}
+        </h2>
+        <ul className="weather__list">
+          <li className="weather__data weather__image--wrapper">
             {selectedWeather.image && (
               <img
                 src={selectedWeather.image}
@@ -123,43 +128,41 @@ function WeatherInfo() {
                 className="weather__image"
               />
             )}
-          </li>
-          <li className="weather__data">
-            <h4 className="weather__title">DESCRIPTION</h4>
             <p className="weather__value">{selectedWeather.description}</p>
-          </li>
-          <li className="weather__data">
-            <h4 className="weather__title">TEMPERATURE</h4>
             <p className="weather__value">{selectedWeather.temperature}</p>
           </li>
-          <li className="weather__data">
-            <h4 className="weather__title">WIND SPEED:</h4>
+          <li className="weather__data weather__data--wind">
+            <h3 className="weather__title">WIND SPEED</h3>
             <p className="weather__value">{selectedWeather.wind_speed}</p>
           </li>
-          <li className="weather__data">
-            <h4 className="weather__title">WIND GUSTS:</h4>
+          <li className="weather__data weather__data--gust">
+            <h3 className="weather__title">WIND GUSTS</h3>
             <p className="weather__value">{selectedWeather.wind_gusts}</p>
           </li>
-          <li className="weather__data">
-            <h4 className="weather__title">PRECIPITATION</h4>
+
+          <li className="weather__data weather__data--visibility">
+            <h3 className="weather__title">VISIBILITY</h3>
+            <p className="weather__value">{selectedWeather.visibility}</p>
+          </li>
+          <li className="weather__data weather__data--wave">
+            <h3 className="weather__title">WAVE HEIGHT</h3>
+            <p className="weather__value">{selectedWeather.wave_height}</p>
+          </li>
+          {/* <li className="weather__data">
+            <h3 className="weather__title">PRECIPITATION</h3>
             <p className="weather__value">{selectedWeather.precipitation}</p>
           </li>
           <li className="weather__data">
-            <h4 className="weather__title">VISIBILITY</h4>
-            <p className="weather__value">{selectedWeather.visibility}</p>
-          </li>
-          <li className="weather__data">
-            <h4 className="weather__title">WAVE HEIGHT:</h4>
-            <p className="weather__value">{selectedWeather.wave_height}</p>
-          </li>
+            <h3 className="weather__title">SUNSET</h3>
+            <p className="weather__value">{selectedWeather.precipitation}</p>
+          </li> */}
         </ul>
       </div>
     );
   };
-  const hours = Array.from({ length: 24 }, (_, i) => `0${i}`.slice(-2));
   return (
-    <div>
-      <h2>Weather Information </h2>
+    <div className="weather__wrapper">
+      <h2 className="weather__header">Let's Check Out the Weather!</h2>
       <div>
         <button
           onClick={() => {
@@ -195,43 +198,76 @@ function WeatherInfo() {
         </button>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <div style={{ width: "100%", position: "relative" }}>
+      <div className="time-bar-container">
+        <div className="time-bar-wrapper">
           <input
             type="range"
             min="0"
             max="23"
             step="1"
-            style={{ width: "100%" }}
+            className="time-bar"
             onChange={(e) =>
               handleHourSelection(
                 `${String(e.target.value).padStart(2, "0")}:00`
               )
             }
           />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              position: "absolute",
-              bottom: "-20px",
-              width: "100%",
-            }}
-          >
+          <div className="hour-labels-wrapper">
             {Array.from({ length: 24 }, (_, i) => (
-              <span key={i} style={{ flex: "1", textAlign: "center" }}>
+              <span key={i} className="hour-label">
                 {i}
               </span>
             ))}
           </div>
         </div>
       </div>
+      {/* <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <div style={{ width: "100%", position: "relative" }}>
+            <input
+              type="range"
+              min="0"
+              max="23"
+              step="1"
+              style={{ width: "100%" }}
+              onChange={(e) =>
+                handleHourSelection(
+                  `${String(e.target.value).padStart(2, "0")}:00`
+                )
+              }
+            />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                position: "absolute",
+                bottom: "-20px",
+                width: "100%",
+              }}
+            >
+              {Array.from({ length: 24 }, (_, i) => (
+                <span key={i} style={{ flex: "1", textAlign: "center" }}>
+                  {i}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div> */}
+      {/* <input
+        type="range"
+        min="0"
+        max="23"
+        step="1"
+        className="timebar" 
+        onChange={(e) =>
+          handleHourSelection(`${String(e.target.value).padStart(2, '0')}:00`)
+        }
+      /> */}
       {displayWeather()}
     </div>
   );

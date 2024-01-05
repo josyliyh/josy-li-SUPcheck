@@ -54,16 +54,18 @@ function LocationInfo (){
         const mapUrl = generateGoogleMapsUrl(apiKey, locationName);
     
         return (
-          <iframe
-            title="Google Map"
-            width="600"
-            height="450"
-            loading="lazy"
-            allowFullScreen
-            frameBorder="0"
-            src={mapUrl}
-            className="spot__map"
-          ></iframe>
+          <div className="spot__map--wrapper">
+            <iframe
+              title="Google Map"
+              width="600"
+              height="450"
+              loading="lazy"
+              allowFullScreen
+              frameBorder="0"
+              src={mapUrl}
+              className="spot__map"
+            ></iframe>
+          </div>
         );
       };
 
@@ -105,7 +107,7 @@ function LocationInfo (){
           </li>
           </ul>
 
-            <strong>Address</strong> {locationData.address}
+            {/* <strong>Address</strong> {locationData.address} */}
       
           {locationData.name && embedGoogleMap('AIzaSyC2cJy54-ajAGRqG0WoPovgW1Gowt4S8i0', locationData.name)}
 
