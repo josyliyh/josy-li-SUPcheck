@@ -165,9 +165,21 @@ function WeatherInfo() {
       <h2 className="weather__header">Let's Check Out the Weather!</h2>
       <div className="weather__date--wrapper">
         <button
-          onClick={() => {
+          // onClick={() => {
+          //   handleDateSelection(
+          //     new Date(new Date().getTime() - 24 * 60 * 60 * 1000)
+          //       .toISOString()
+          //       .split("T")[0]
+          //   );
+          //   handleDaySelection(0);
+          // }}
+          // onClick={() => {
+          //   handleDateSelection(new Date().toISOString().split("T")[0]);
+          //   handleDaySelection(1);
+          // }}
+                onClick={() => {
             handleDateSelection(
-              new Date(new Date().getTime() - 24 * 60 * 60 * 1000)
+              new Date(new Date().getTime())
                 .toISOString()
                 .split("T")[0]
             );
@@ -177,17 +189,21 @@ function WeatherInfo() {
           Today
         </button>
         <button
-          onClick={() => {
-            handleDateSelection(new Date().toISOString().split("T")[0]);
-            handleDaySelection(1);
-          }}
+                 onClick={() => {
+                  handleDateSelection(
+                    new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
+                      .toISOString()
+                      .split("T")[0]
+                  );
+                  handleDaySelection(2);
+                }}
         >
           Tomorrow
         </button>
         <button
           onClick={() => {
             handleDateSelection(
-              new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
+              new Date(new Date().getTime() + 2*24 * 60 * 60 * 1000)
                 .toISOString()
                 .split("T")[0]
             );
