@@ -209,7 +209,6 @@ function WeatherInfo() {
             max="23"
             step="1"
             style={{ width: "100%" }}
-            value={12}
             onChange={(e) =>
               handleHourSelection(
                 `${String(e.target.value).padStart(2, "0")}:00`
