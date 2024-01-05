@@ -8,7 +8,7 @@ function WeatherInfo() {
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0]
   );
-  const [selectedHour, setSelectedHour] = useState("00:00");
+  const [selectedHour, setSelectedHour] = useState("12:00");
   const [selectedDay, setSelectedDay] = useState("0");
   const { id } = useParams();
   useEffect(() => {
@@ -29,7 +29,10 @@ function WeatherInfo() {
   }, [id]);
   const handleDateSelection = (date) => {
     setSelectedDate(date);
-    console.log("Selected date:", date);
+  };
+
+  const handleDaySelection = (day) => {
+    setSelectedDay(day);
   };
   const handleHourSelection = (hour) => {
     setSelectedHour(hour);
@@ -56,7 +59,7 @@ function WeatherInfo() {
       );
 
       const weatherCode = weatherData1.hourly.weather_code[selectedWeather1];
-      console.log(selectedDay);
+      console.log("Day", selectedDay);
       const sunsetTime = weatherData1.daily.sunset[selectedDay];
       const sunriseTime = weatherData1.daily.sunrise[selectedDay];
       console.log("rise", sunriseTime);
@@ -156,34 +159,37 @@ function WeatherInfo() {
   const hours = Array.from({ length: 24 }, (_, i) => `0${i}`.slice(-2));
   return (
     <div>
-      <h2>Weather Information for ID: {id}</h2>
+      <h2>Weather Information </h2>
       <div>
         <button
-          onClick={() =>
-            handleDateSelection(new Date().toISOString().split("T")[0])
-          }
+          onClick={() => {
+            handleDateSelection(
+              new Date(new Date().getTime() - 24 * 60 * 60 * 1000)
+                .toISOString()
+                .split("T")[0]
+            );
+            handleDaySelection(0);
+          }}
         >
           Today
         </button>
         <button
-          onClick={() =>
-            handleDateSelection(
-              new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
-                .toISOString()
-                .split("T")[0]
-            )
-          }
+          onClick={() => {
+            handleDateSelection(new Date().toISOString().split("T")[0]);
+            handleDaySelection(1);
+          }}
         >
           Tomorrow
         </button>
         <button
-          onClick={() =>
+          onClick={() => {
             handleDateSelection(
-              new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000)
+              new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
                 .toISOString()
                 .split("T")[0]
-            )
-          }
+            );
+            handleDaySelection(2);
+          }}
         >
           Day After
         </button>
@@ -203,6 +209,7 @@ function WeatherInfo() {
             max="23"
             step="1"
             style={{ width: "100%" }}
+            value={12}
             onChange={(e) =>
               handleHourSelection(
                 `${String(e.target.value).padStart(2, "0")}:00`
