@@ -15,7 +15,9 @@ ul {
 }
 
 body{
-  // background-color: $lt-grey;
+  background-color: $white;
+  @include tablet {
+margin: 0 1rem;}
 }
 
 
@@ -31,5 +33,5 @@ button{
 
 a{
   text-decoration: none;
-  // color: black
+  color: inherit;
 }

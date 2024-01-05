@@ -1,10 +1,16 @@
+@import '../../styles/partials/mixins';
+@import '../../styles/partials/variables';
 .header {
     display: flex;
+    margin: 1rem 0;
     justify-content: center;
     align-items: center;
     &__logo {
-        height: 3.5rem;
-        width: 10rem;
-        object-fit: cover;
+        letter-spacing: -4px;
+        display: inline;
+        color: $blue-dark;
+        &--dot {
+           font-size: 5rem;
+        }
     }
 }
