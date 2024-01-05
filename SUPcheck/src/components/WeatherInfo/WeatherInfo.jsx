@@ -163,7 +163,7 @@ function WeatherInfo() {
   return (
     <div className="weather__wrapper">
       <h2 className="weather__header">Let's Check Out the Weather!</h2>
-      <div>
+      <div className="weather__date--wrapper">
         <button
           onClick={() => {
             handleDateSelection(
@@ -213,61 +213,15 @@ function WeatherInfo() {
             }
           />
           <div className="hour-labels-wrapper">
-            {Array.from({ length: 24 }, (_, i) => (
-              <span key={i} className="hour-label">
-                {i}
+            {Array.from({ length: 12 }, (_, i) => (
+              <span key={i * 2} className="hour-label">
+                {i * 2}
               </span>
             ))}
           </div>
         </div>
       </div>
-      {/* <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <div style={{ width: "100%", position: "relative" }}>
-            <input
-              type="range"
-              min="0"
-              max="23"
-              step="1"
-              style={{ width: "100%" }}
-              onChange={(e) =>
-                handleHourSelection(
-                  `${String(e.target.value).padStart(2, "0")}:00`
-                )
-              }
-            />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                position: "absolute",
-                bottom: "-20px",
-                width: "100%",
-              }}
-            >
-              {Array.from({ length: 24 }, (_, i) => (
-                <span key={i} style={{ flex: "1", textAlign: "center" }}>
-                  {i}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div> */}
-      {/* <input
-        type="range"
-        min="0"
-        max="23"
-        step="1"
-        className="timebar" 
-        onChange={(e) =>
-          handleHourSelection(`${String(e.target.value).padStart(2, '0')}:00`)
-        }
-      /> */}
+
       {displayWeather()}
     </div>
   );

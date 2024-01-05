@@ -81,6 +81,25 @@
 &__data--gust{ grid-area: 3 / 3 / 4 / 4; }
 &__data--visibility { grid-area: 4 / 2 / 5 / 3; }
 &__data--wave { grid-area: 4 / 3 / 5 / 4; }
+
+&__date--wrapper{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0;
+    button {
+        padding: 1rem 2rem;
+    border-radius: 1.5rem;
+    border: none;
+    background-color: $blue-dark;
+    color: $white;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: $blue-light;
+        color: $blue-deep;
+    }
+    }
+}
 }
 
 .time-bar-container {
@@ -106,7 +125,7 @@
   
       .hour-label {
         flex: 1;
-        text-align: center;
+        text-align: left;
       }
     }
   }
