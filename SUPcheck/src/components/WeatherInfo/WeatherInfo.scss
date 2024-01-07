@@ -69,15 +69,17 @@
     color: $white;
   }
   &__title {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     position: absolute;
     top: 20%;
     left: 20%;
+    font-weight: 700;
     &--sun {
       color: $white;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       text-align: left;
       position: unset;
+      font-weight: 700;
     }
   }
   &__value {
