@@ -31,15 +31,20 @@ function WeatherInfo() {
   }, [id]);
   const handleDateSelection = (date) => {
     setSelectedDate(date);
+  
   };
 
   const handleDaySelection = (day) => {
     setSelectedDay(day);
+    const selectedSunrise = weatherData.weatherData1.daily.sunrise[day];
+    const selectedSunset = weatherData.weatherData1.daily.sunset[day];
+  
   };
   const handleHourSelection = (hour) => {
     setSelectedHour(hour);
     console.log("Selected hour:", hour);
   };
+
   const displayWeather = () => {
     const selectedTime = `${selectedDate}T${selectedHour}`;
     let selectedWeather = {};
@@ -109,18 +114,22 @@ function WeatherInfo() {
       return <p>Weather data not available or has an unexpected format</p>;
     }
     const dateTime = new Date(selectedTime);
-    const formattedDateTime = dateTime.toLocaleString();
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false };
+    const formattedDateTime = dateTime.toLocaleString(undefined, options).replace(',', '');
     if (!selectedWeather) {
       return <p>Please select a valid time</p>;
     }
+
+
     return (
       <div>
-        <h2 className="weather__wrapper--title">
-          Ready for Paddleboarding on...
-          {formattedDateTime || new Date().toISOString().split("T")[0]}
-        </h2>
+        
         <ul className="weather__list">
           <li className="weather__data weather__image--wrapper">
+          <h2 className="weather__wrapper--title">
+         
+          {formattedDateTime || new Date().toISOString().split("T")[0]}
+        </h2>
             {selectedWeather.image && (
               <img
                 src={selectedWeather.image}
@@ -148,72 +157,50 @@ function WeatherInfo() {
             <h3 className="weather__title">WAVE HEIGHT</h3>
             <p className="weather__value">{selectedWeather.wave_height}</p>
           </li>
-          {/* <li className="weather__data">
+
+          <li className="weather__data">
             <h3 className="weather__title">PRECIPITATION</h3>
             <p className="weather__value">{selectedWeather.precipitation}</p>
           </li>
-          <li className="weather__data">
-            <h3 className="weather__title">SUNSET</h3>
-            <p className="weather__value">{selectedWeather.precipitation}</p>
-          </li> */}
+          <li className="weather__data weather__data--sun">
+          <h3 className="weather__title--sun">SUNRISE</h3>
+            <p className=" weather__value weather__value--sun">{weatherData.weatherData1.daily.sunrise[selectedDay].split('T')[1].slice(0, 5)}</p>
+            <h3 className="weather__title--sun">SUNSET</h3>
+          <p className=" weather__value weather__value--sun"> {weatherData.weatherData1.daily.sunset[selectedDay].split('T')[1].slice(0, 5)}</p>
+
+          </li>
+           {selectedDay !== null && (
+        <div>
+
+        </div>
+      )}
         </ul>
       </div>
     );
   };
   return (
     <div className="weather__wrapper">
-      <h2 className="weather__header">Let's Check Out the Weather!</h2>
-      <div className="weather__date--wrapper">
-        <button
-          // onClick={() => {
-          //   handleDateSelection(
-          //     new Date(new Date().getTime() - 24 * 60 * 60 * 1000)
-          //       .toISOString()
-          //       .split("T")[0]
-          //   );
-          //   handleDaySelection(0);
-          // }}
-          // onClick={() => {
-          //   handleDateSelection(new Date().toISOString().split("T")[0]);
-          //   handleDaySelection(1);
-          // }}
-                onClick={() => {
-            handleDateSelection(
-              new Date(new Date().getTime())
-                .toISOString()
-                .split("T")[0]
-            );
-            handleDaySelection(0);
-          }}
-        >
-          Today
-        </button>
-        <button
-                 onClick={() => {
-                  handleDateSelection(
-                    new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
-                      .toISOString()
-                      .split("T")[0]
-                  );
-                  handleDaySelection(2);
-                }}
-        >
-          Tomorrow
-        </button>
-        <button
-          onClick={() => {
-            handleDateSelection(
-              new Date(new Date().getTime() + 2*24 * 60 * 60 * 1000)
-                .toISOString()
-                .split("T")[0]
-            );
-            handleDaySelection(2);
-          }}
-        >
-          Day After
-        </button>
-      </div>
+    <h2 className="weather__header">Let's Check Out the Weather!</h2>
 
+    {weatherData && weatherData.weatherData1 && weatherData.weatherData1.daily && weatherData.weatherData1.daily.time ? (
+      <div className="weather__date--wrapper">
+        {weatherData.weatherData1.daily.time.map((date, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              handleDateSelection(date);
+              handleDaySelection(index);
+            }}
+          >
+            {index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : 'Day After'} - {date}
+          </button>
+        ))}
+      </div>
+    ) : (
+      <div>Loading...</div> 
+    )}
+
+   
       <div className="time-bar-container">
         <div className="time-bar-wrapper">
           <input
@@ -228,7 +215,7 @@ function WeatherInfo() {
               )
             }
           />
-           <label for="range" id="value"></label>
+          <label htmlFor="range" id="value"></label>
           <div className="hour-labels-wrapper">
             {Array.from({ length: 12 }, (_, i) => (
               <span key={i * 2} className="hour-label">
@@ -239,8 +226,10 @@ function WeatherInfo() {
         </div>
       </div>
 
+
       {displayWeather()}
     </div>
+  
   );
 }
 export default WeatherInfo;

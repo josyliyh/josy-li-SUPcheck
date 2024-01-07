@@ -1,9 +1,8 @@
-
 @import "../../styles/partials/mixins";
 @import "../../styles/partials/variables";
 // .weather {
 //     &__header {
-    
+
 //         display: flex;
 //         justify-content: space-around;
 //     }
@@ -24,112 +23,142 @@
 // }
 
 .weather {
-&__header {
+  &__header {
     text-align: center;
-}
-&__wrapper {
+  }
+  &__wrapper {
     margin: 2rem;
     &--title {
-        margin: 2rem 0;
-    text-align: center;
+      margin: 2rem 0;
+      text-align: center;
+      color: $white;
     }
-}
-    &__data{
+  }
+  &__data {
     display: flex;
     flex-direction: column;
     width: 100%;
+    justify-content: center;
+    &--sun {
+      align-items: normal;
+      align-content: normal;
+    }
     @include box-shadow;
     @include tablet {
-        width: 100%
+      width: 100%;
     }
     align-items: center;
     background-color: $blue-light;
     padding: 3rem 2rem;
     border-radius: 1.5rem;
     position: relative;
-    background-image: linear-gradient(to bottom left, $blue-light 0%, $blue-light 50%, $blue 100%);
-  transition: background-position 600ms ease;
-  background-size: 200%;
-&:hover {
-  background-position: 80% 0;
-}}
-&__title,&__value {
-    color:$white;
-}
-&__title {
-    font-size: .7rem;
+    background-image: linear-gradient(
+      to bottom left,
+      $blue-light 0%,
+      $blue-dark 50%,
+      $blue 100%
+    );
+    transition: background-position 600ms ease;
+    background-size: 200%;
+    &:hover {
+      background-position: 80% 0;
+    }
+  }
+  &__title,
+  &__value {
+    color: $white;
+  }
+  &__title {
+    font-size: 0.7rem;
     position: absolute;
     top: 20%;
     left: 20%;
-}
-&__value {
-   font-size: 1.2rem;
-}
-&__list {
+    &--sun {
+      color: $white;
+      font-size: 0.7rem;
+      text-align: left;
+      position: unset;
+    }
+  }
+  &__value {
+    font-size: 1.2rem;
+    &--sun {
+      text-align: center;
+    }
+  }
+  &__list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-column-gap: 1rem;
-    grid-row-gap: 1rem;  
-}
-&__image--wrapper {
+    grid-row-gap: 1rem;
+  }
+  &__image--wrapper {
     grid-area: 1 / 2 / 3 / 4;
     width: 100%;
 
     padding: 1.7rem 2rem;
     display: flex;
     justify-content: center;
-}
-&__data--wind { grid-area: 3 / 2 / 4 / 3; }
-&__data--gust{ grid-area: 3 / 3 / 4 / 4; }
-&__data--visibility { grid-area: 4 / 2 / 5 / 3; }
-&__data--wave { grid-area: 4 / 3 / 5 / 4; }
+  }
+  &__data--wind {
+    grid-area: 3 / 2 / 4 / 3;
+  }
+  &__data--gust {
+    grid-area: 3 / 3 / 4 / 4;
+  }
+  &__data--visibility {
+    grid-area: 4 / 2 / 5 / 3;
+  }
+  &__data--wave {
+    grid-area: 4 / 3 / 5 / 4;
+  }
 
-&__date--wrapper{
+  &__date--wrapper {
     display: flex;
     gap: 1rem;
     justify-content: center;
     margin: 1rem 0;
     button {
-        padding: 1rem 2rem;
-    border-radius: 1.5rem;
-    border: none;
-    background-color: $blue-dark;
-    color: $white;
-    transition: background-color 0.3s ease;
-    @include box-shadow;
-    &:hover {
+      padding: 1rem 2rem;
+      border-radius: 1.5rem;
+      border: none;
+      background-color: $blue-dark;
+      color: $white;
+      transition: background-color 0.3s ease;
+      @include box-shadow;
+      &:hover {
         background-color: $blue-light;
         color: $blue-deep;
-    }
-    }
-}
-}
-
-.time-bar-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .time-bar-wrapper {
-    width: 100%;
-    position: relative;
-  
-    .time-bar {
-      width: 100%;
-    }
-  
-    .hour-labels-wrapper {
-      display: flex;
-      justify-content: space-between;
-      position: absolute;
-      bottom: -20px;
-      width: 100%;
-  
-      .hour-label {
-        flex: 1;
-        text-align: left;
       }
     }
   }
+}
+
+.time-bar-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.time-bar-wrapper {
+  width: 100%;
+  position: relative;
+
+  .time-bar {
+    width: 100%;
+  }
+
+  .hour-labels-wrapper {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+
+    .hour-label {
+      flex: 1;
+      text-align: left;
+    }
+  }
+}
