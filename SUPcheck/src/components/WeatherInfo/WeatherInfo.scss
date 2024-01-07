@@ -29,7 +29,6 @@
   &__wrapper {
     margin: 2rem;
     &--title {
-      margin: 2rem 0;
       text-align: center;
       color: $white;
     }
@@ -39,9 +38,29 @@
     flex-direction: column;
     width: 100%;
     justify-content: center;
+
+
+    &--wrapper {
+      display: flex;
+     flex-direction: column;
+      gap: 0.5rem;
+      .weather__data {
+        flex: 1;
+        height: 7rem;
+        padding: 3rem 2rem;
+      }
+
+      .row {
+        display: flex;
+        gap: 0.5rem;
+      }
+      
+
+    }
     &--sun {
       align-items: normal;
       align-content: normal;
+      padding: 1.5rem 2rem;
     }
     @include box-shadow;
     @include tablet {
@@ -49,7 +68,7 @@
     }
     align-items: center;
     background-color: $blue-light;
-    padding: 3rem 2rem;
+  
     border-radius: 1.5rem;
     position: relative;
     background-image: linear-gradient(
@@ -89,32 +108,33 @@
     }
   }
   &__list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-column-gap: 1rem;
-    grid-row-gap: 1rem;
+    // display: grid;
+    // grid-template-columns: repeat(4, 1fr);
+    // grid-template-rows: repeat(4, 1fr);
+    // grid-column-gap: 1rem;
+    // grid-row-gap: 1rem;
+
   }
   &__image--wrapper {
-    grid-area: 1 / 2 / 3 / 4;
+    // grid-area: 1 / 2 / 3 / 4;
     width: 100%;
 
     padding: 1.7rem 2rem;
     display: flex;
     justify-content: center;
   }
-  &__data--wind {
-    grid-area: 3 / 2 / 4 / 3;
-  }
-  &__data--gust {
-    grid-area: 3 / 3 / 4 / 4;
-  }
-  &__data--visibility {
-    grid-area: 4 / 2 / 5 / 3;
-  }
-  &__data--wave {
-    grid-area: 4 / 3 / 5 / 4;
-  }
+//   &__data--wind {
+//     grid-area: 3 / 2 / 4 / 3;
+//   }
+//   &__data--gust {
+//     grid-area: 3 / 3 / 4 / 4;
+//   }
+//   &__data--visibility {
+//     grid-area: 4 / 2 / 5 / 3;
+//   }
+//   &__data--wave {
+//     grid-area: 4 / 3 / 5 / 4;
+//   }
 
   &__date--wrapper {
     display: flex;
