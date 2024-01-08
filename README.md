@@ -131,16 +131,16 @@ npm run dev
 ## Lessons Learned
 
 ### Backend Development
-- **Backend Setup:** Constructed backend server with MySQL using Knex for migrations, seeding, and endpoint logic via controllers
+- **Backend Setup:** Constructed backend server with MySQL using Knex for migrations, seeding, and endpoint logic via controllers.
 ### API Integration
 - **API Understanding:** Explored Open-Meteo and Google Maps APIs for data retrieval.
 - **Image Retrieval:** Successfully fetched location images using coordinates.
 
-### Frontend Styling (SASS & Flexbox)
-- **SASS & Flexbox Usage:** Employed SASS and flexbox for efficient frontend styling.
+### Frontend Styling 
+- **SASS & Flexbox Usage:** Utilized SASS and flexbox for efficient frontend styling.
 
 ## Next Steps
 
 ### Implementing Favorites
 - **Favorite Locations:** Enable users to save preferred locations.
-- **Sort Favorites:** Implement sorting to display favorited locations prominently.
+- **Sort Favorites:** Implement sorting to display favorited locations at the top of the list.
