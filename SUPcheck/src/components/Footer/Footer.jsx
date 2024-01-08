@@ -1,7 +1,9 @@
+import "./Footer.scss"
+
 function Footer() {
   return (
-    <footer>
-      <p>
+    <footer className="footer">
+      <p className="footer__description">
         Weather data provided by{" "}
         <a
           href="https://open-meteo.com/"
@@ -10,7 +12,11 @@ function Footer() {
         >
           Open-Meteo API
         </a>{" "}
-        | Created by Josy Li | For educational purposes only
+        | Created by   <a
+          href="https://www.linkedin.com/in/josyli/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Josy Li </a>| For educational purposes only
       </p>
     </footer>
   );

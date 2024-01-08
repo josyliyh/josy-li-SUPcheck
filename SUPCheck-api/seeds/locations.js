@@ -13,7 +13,7 @@
       city: 'Vancouver',
       Latitude: 49.2711,
       Longitude: -123.1969,
-      Rental: false,
+      Rental: true,
       DayPass: false
     },
     {
@@ -33,7 +33,7 @@
       city: 'Port Moody',
       Latitude: 49.2869,
       Longitude: -122.8656,
-      Rental: false,
+      Rental: true,
       DayPass: false
     },
     {
@@ -73,7 +73,7 @@
       city: 'North Vancouver',
       Latitude: 49.3266,
       Longitude: -122.9474,
-      Rental: false,
+      Rental: true,
       DayPass: false
     },
     {
@@ -83,7 +83,7 @@
       city: 'North Vancouver',
       Latitude: 49.3030,
       Longitude: -122.9553,
-      Rental: false,
+      Rental: true,
       DayPass: false
     },
     {
@@ -134,17 +134,7 @@
       Latitude: 49.3506,
       Longitude: -122.8598,
       Rental: false,
-      DayPass: false
-    },
-    {
-      id: 14,
-      name: 'White Pine Beach',
-      address: 'Port Moody, BC', // Placeholder address
-      city: 'Port Moody',
-      Latitude: 49.2996,
-      Longitude: -122.8664,
-      Rental: false,
-      DayPass: false
+      DayPass: true
     }
   ]);
 };

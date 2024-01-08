@@ -1,0 +1,8 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/variables";
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    margin: 3rem auto 2rem;
+}

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const locationsController = require('../controllers/locations-controllers');
 
-console.log("routes is running" ,router)
+console.log("routes is running")
 // Route for getting all locations
 router.get('/', locationsController.getAllLocations);
 
