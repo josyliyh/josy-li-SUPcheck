@@ -68,10 +68,9 @@ Navigate to SUPcheck-api Directory
 cd SUPcheck-api
 ```
 Use .env.sample as a template to create Environment File
-- Create a new file named .env in the SUPcheck-api directory
+- Create a new file named .env in the SUPcheck-api directory.
 - Copy the content of .env.sample into .env.
-- Replace placeholders <YOUR_DB_NAME>, <YOUR_DB_USER>, and <YOUR_DB_PASSWORD> with your MySQL database details
-- Define other environment variables (e.g., PORT=8080).
+- Replace placeholders <YOUR_DB_NAME>, <YOUR_DB_USER>, and <YOUR_DB_PASSWORD> with your MySQL database details.
 
 Install nodeJS dependencies
 ```
@@ -112,12 +111,23 @@ Run React App in development mode
 npm run dev
 ```
 ## Screenshots
-
+<!-- Location list
 ![Location list](./screenshots/location-list.png)
+Single location
 ![Single location](./screenshots/single-location.png)
+Weather-mobile
 ![Weather-mobile](./screenshots/weather-mobile.png)
+Weather-tablet
 ![Weather-tablet](./screenshots/weather-tablet.png)
-![Weather-desktop](./screenshots/weather-desktop.png)
+Weather-desktop
+![Weather-desktop](./screenshots/weather-desktop.png) -->
+
+## Screenshots
+
+| Location List | Single Location | Weather (Mobile) | Weather (Tablet) | Weather (Desktop) |
+| --- | --- | --- | --- | --- |
+| ![Location List](./screenshots/location-list.png) | ![Single Location](./screenshots/single-location.png) | ![Weather (Mobile)](./screenshots/weather-mobile.png) | ![Weather (Tablet)](./screenshots/weather-tablet.png) | ![Weather (Desktop)](./screenshots/weather-desktop.png) |
+
 
 ## Nice-to-haves
 - Favourite function 
