@@ -5,6 +5,9 @@
     margin: 1rem 0;
     justify-content: center;
     align-items: center;
+    @include tablet {
+        justify-content: flex-start;
+    }
     &__logo {
         letter-spacing: -4px;
         display: inline;
