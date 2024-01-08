@@ -4,28 +4,6 @@
 
 SUPcheck is an application for stand-up paddleboarders to check the weather before going paddleboarding.
 
-### Problem
-
-Safety is important for paddleboarders; people need to check weather and water conditions. Some beginners may not know how to read the water condition. This application will warn users if it is not suitable for paddleboarding.
-
-### Features
-
-#### 1. Location Lookup
-- **Discover Paddleboarding Locations:** Users can easily search and discover various paddleboarding spots.
-
-#### 2. Location Information
-- **Detailed Location Insights:** Obtain detailed information about the paddleboarding locations, including if day passes are required, rental services, and addresses for easy navigation.
-
-#### 3. Weather Information
-- **Real-time Weather Updates:** Obtain current weather conditions and forecasts for selected locations, specifying dates and times for planning paddleboarding activities.
-
-### User Profile
-
-- Paddleboarder:
-    - Looking for spots to paddleboard in BC Lower Mainland.
-    - Wants to check the weather before paddleboarding.
-    - Wants information about where to rent a paddleboard.
-
 ## Implementation
 
 ### Front-end Tech Stack
@@ -51,8 +29,8 @@ Safety is important for paddleboarders; people need to check weather and water c
 - Home page (locations list)
 - Single location 
 
-## Data
-### Location
+### Data
+#### Location
 - id: int
 - name: varchar
 - Longitude: decimal
@@ -60,7 +38,7 @@ Safety is important for paddleboarders; people need to check weather and water c
 - Rental: boolean
 - Day Pass: boolean
 
-### Weather
+#### Weather
 - temperature_2m: decimal
 - visibility: decimal
 - wind_speed_10m: decimal
@@ -70,7 +48,7 @@ Safety is important for paddleboarders; people need to check weather and water c
 - sunset: DATETIME
 - sunrise: DATETIME
 
-## Endpoints
+### Endpoints
 
 GET /locations/:id
 - Get location by id
