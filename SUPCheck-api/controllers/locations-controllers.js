@@ -38,7 +38,7 @@ const getWeatherForcast = async (latitude, longitude) => {
     try {
       const weatherAPIURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation,visibility,wind_speed_10m,wind_gusts_10m,weather_code&daily=sunrise,sunset&forecast_days=3&timezone=America%2FLos_Angeles`;      
         const response = await axios.get(weatherAPIURL);
-        return response.data; // Assuming the API response contains the weather data
+        return response.data; 
     } catch (error) {
         console.error('Error fetching weather data:', error);
         throw new Error('Error fetching weather data from the API');
@@ -50,7 +50,7 @@ const getMarineForcast = async (latitude, longitude) => {
   try {
       const marineAPIURL = `https://marine-api.open-meteo.com/v1/marine?latitude=${latitude}&longitude=${longitude}&hourly=wave_height&length_unit=metric&forecast_days=3&timezone=America%2FLos_Angeles`;
       const response = await axios.get(marineAPIURL);
-      return response.data; // Assuming the API response contains wave height marine forecast data
+      return response.data; 
   } catch (error) {
       console.error('Error fetching marine forecast data:', error);
       throw new Error('Error fetching marine forecast from the API');

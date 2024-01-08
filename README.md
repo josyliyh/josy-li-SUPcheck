@@ -111,7 +111,7 @@ Run React App in development mode
 npm run dev
 ```
 ## Screenshots
-<!-- Location list
+Location list
 ![Location list](./screenshots/location-list.png)
 Single location
 ![Single location](./screenshots/single-location.png)
@@ -120,16 +120,22 @@ Weather-mobile
 Weather-tablet
 ![Weather-tablet](./screenshots/weather-tablet.png)
 Weather-desktop
-![Weather-desktop](./screenshots/weather-desktop.png) -->
-
-## Screenshots
-
-| Location List | Single Location | Weather (Mobile) | Weather (Tablet) | Weather (Desktop) |
-| --- | --- | --- | --- | --- |
-| ![Location List](./screenshots/location-list.png) | ![Single Location](./screenshots/single-location.png) | ![Weather (Mobile)](./screenshots/weather-mobile.png) | ![Weather (Tablet)](./screenshots/weather-tablet.png) | ![Weather (Desktop)](./screenshots/weather-desktop.png) |
+![Weather-desktop](./screenshots/weather-desktop.png)
 
 
-## Nice-to-haves
-- Favourite function 
-    - User can save their favourite location and it will show on the top of the list
+## Lessons Learned
 
+### Backend Development
+- **Backend Setup:** Constructed backend server with MySQL using Knex for migrations, seeding, and endpoint logic via controllers
+### API Integration
+- **API Understanding:** Explored Open-Meteo and Google Maps APIs for data retrieval.
+- **Image Retrieval:** Successfully fetched location images using coordinates.
+
+### Frontend Styling (SASS & Flexbox)
+- **SASS & Flexbox Usage:** Employed SASS and flexbox for efficient frontend styling.
+
+## Next Steps
+
+### Implementing Favorites
+- **Favorite Locations:** Enable users to save preferred locations.
+- **Sort Favorites:** Implement sorting to display favorited locations prominently.
