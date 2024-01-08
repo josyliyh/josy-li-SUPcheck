@@ -20,7 +20,6 @@ function WeatherInfo() {
         const response = await axios.get(`http://localhost:8080/${id}/weather`);
         if (response.status === 200) {
           setWeatherData(response.data);
-          console.log("Fetched weather data:", response.data);
         } else {
           throw new Error("Failed to fetch data");
         }
@@ -36,12 +35,9 @@ function WeatherInfo() {
 
   const handleDaySelection = (day) => {
     setSelectedDay(day);
-    // const selectedSunrise = weatherData.weatherData1.daily.sunrise[day];
-    // const selectedSunset = weatherData.weatherData1.daily.sunset[day];
   };
   const handleHourSelection = (hour) => {
     setSelectedHour(hour);
-    console.log("Selected hour:", hour);
   };
 
   const displayWeather = () => {
@@ -65,12 +61,10 @@ function WeatherInfo() {
       );
 
       const weatherCode = weatherData1.hourly.weather_code[selectedWeather1];
-      console.log("Day", selectedDay);
       const sunsetTime = weatherData1.daily.sunset[selectedDay];
 
       const sunriseTime = weatherData1.daily.sunrise[selectedDay];
-      console.log("rise", sunriseTime);
-      console.log(selectedTime);
+
       function isDaytime(selectedTime, sunriseTime, sunsetTime) {
         const selectedHour = new Date(selectedTime).getHours();
         const sunriseHour = new Date(sunriseTime).getHours();
@@ -146,31 +140,22 @@ function WeatherInfo() {
       waveHeight <= 1 &&
       safeWeatherCodes.includes(weatherCode)
     ) {
-      safety = "Safe for Moderate Paddlers";
+      safety = "Moderate and Experienced Paddlers";
     } else if (
       // Conditions for Experienced Paddlers
-      temperature >= 4 &&
+      // commented out temperature and waveHeight for testing 
+      // temperature >= 4 &&
       temperature <= 38 &&
       precipitation <= 5 &&
       visibility >= 3000 &&
       windSpeed <= 35 &&
       windGusts <= 40 &&
-      waveHeight <= 1 &&
+      // waveHeight <= 1 &&
       safeWeatherCodes.includes(weatherCode)
     ) {
-      safety = "Safe for Experienced Paddlers";
+      safety = "Experienced Paddlers ";
     }
-    console.log(
-      `Temperature: ${temperature}°C`,
-      `Precipitation: ${precipitation}`,
-      `Visibility: ${visibility}m`,
-      `Wind Speed: ${windSpeed}kph`,
-      `Wind Gusts: ${windGusts}kph`,
-      `Wave Height: ${waveHeight}m`,
-      `Weather Code: ${weatherCode}`,
-      typeof weatherCode,
-      safety
-    );
+    
     selectedWeather = {
       ...selectedWeather,
       safety: safety,
@@ -367,7 +352,7 @@ function WeatherInfo() {
               </h3>
               <p className="weather__value">{selectedWeather.precipitation}</p>
             </li>
-            <li className="weather__data weather__data--precipitation">
+            <li className="weather__data weather__data--safety">
               <h3 className="weather__title">
                 SAFETY{" "}
                 <svg
@@ -386,7 +371,7 @@ function WeatherInfo() {
                   />
                 </svg>
               </h3>
-              <p className="weather__value">{selectedWeather.safety}</p>
+              <p className="weather__value weather__value--safety">{selectedWeather.safety}</p>
             </li>
             </div>
           </div>

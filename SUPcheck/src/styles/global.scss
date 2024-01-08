@@ -1,4 +1,3 @@
-@import './partials/text-styles';
 @import './partials/variables';
 @import './partials/mixins';
 @import './partials/typography';
@@ -35,4 +34,9 @@ button{
 a{
   text-decoration: none;
   color: inherit;
+  &:hover{
+    cursor: pointer;
+  }
+
+
 }

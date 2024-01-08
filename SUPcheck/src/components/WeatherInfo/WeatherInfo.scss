@@ -51,11 +51,18 @@
       align-items: normal;
       align-content: normal;
       padding: 1.5rem 2rem;
+      @include tablet {
+  
+        flex-direction: row;
+      justify-content: space-around;
+      }
     }
     @include box-shadow;
     @include tablet {
       width: 100%;
+
     }
+
     align-items: center;
     background-color: $blue-light;
 
@@ -96,12 +103,19 @@
     &--sun {
       text-align: center;
     }
+    &--safety {
+        font-size: 1rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    }
   }
   &__list {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    margin-top: 3rem;
+    width: 80%;
+    margin: 3rem auto 0;
+
     @include desktop {
       flex-direction: row;
     }
@@ -147,6 +161,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .time-bar-wrapper {

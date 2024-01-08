@@ -4,6 +4,7 @@ import Locations from './pages/Locations/Locations'
 import SingleLocation from "./pages/SingleLocation/SingleLocation"
 import Nav from "./components/Nav/Nav"
 import "./styles/global.scss"
+import Footer from "./components/Footer/Footer"
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
  <Route path="/:id" element={<SingleLocation />} /> 
 
  </Routes>
+ <Footer/>
  </BrowserRouter>
   )
 }
