@@ -193,8 +193,9 @@ function WeatherInfo() {
     }
 
     return (
-      <div>
+      <>
         <ul className="weather__list">
+          <div className="weather__data--row">
           <li className="weather__data weather__image--wrapper">
             <h2 className="weather__wrapper--title">
               {formattedDateTime || new Date().toISOString().split("T")[0]}
@@ -273,6 +274,7 @@ function WeatherInfo() {
                 .slice(0, 5)}
             </p>
           </li>
+          </div>
           <div className="weather__data--wrapper">
           <div class="row">
             <li className="weather__data weather__data--wind">
@@ -391,7 +393,7 @@ function WeatherInfo() {
 
           {selectedDay !== null && <div></div>}
         </ul>
-      </div>
+      </>
     );
   };
   return (
