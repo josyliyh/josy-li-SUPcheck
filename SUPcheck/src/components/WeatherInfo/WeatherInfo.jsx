@@ -202,9 +202,9 @@ function WeatherInfo() {
               >
                 <path
                   fill="#f0f0f0"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M8.25 5a3.75 3.75 0 1 1 7.5 0v6.348c0 .072.04.18.158.274a6.25 6.25 0 1 1-7.816 0c.118-.095.158-.202.158-.274zM12 2.75A2.25 2.25 0 0 0 9.75 5v6.348c0 .603-.31 1.116-.72 1.444a4.75 4.75 0 1 0 5.939 0c-.409-.328-.719-.84-.719-1.444V5A2.25 2.25 0 0 0 12 2.75m0 1.5a.75.75 0 0 1 .75.75v8.337a3.251 3.251 0 1 1-1.5 0V5a.75.75 0 0 1 .75-.75m0 10.5a1.75 1.75 0 1 0 0 3.5a1.75 1.75 0 0 0 0-3.5"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
               </svg>{" "}
               {selectedWeather.temperature}
@@ -222,9 +222,9 @@ function WeatherInfo() {
                 <path
                   fill="none"
                   stroke="#f0f0f0"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   d="M15.5 17.5a3.5 3.5 0 1 0-7 0M11.9 3v7m-6.002 1.398l1.278 1.278M3 17.4h1.8m14.2 0h1.8m-4.176-4.724l1.278-1.278M21 21H3M8.3 6.6L11.9 3l3.6 3.6"
                 />
               </svg>
@@ -245,9 +245,9 @@ function WeatherInfo() {
                 <path
                   fill="none"
                   stroke="#f0f0f0"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   d="M15.5 17.5a3.5 3.5 0 1 0-7 0M11.9 3v7m-6.002 1.398l1.278 1.278M3 17.4h1.8m14.2 0h1.8m-4.176-4.724l1.278-1.278M21 21H3M8.3 7l3.6 3.6L15.5 7"
                 />
               </svg>
@@ -261,7 +261,7 @@ function WeatherInfo() {
           </li>
           </div>
           <div className="weather__data--wrapper">
-          <div class="row">
+          <div className="row">
             <li className="weather__data weather__data--wind">
               <h3 className="weather__title">
                 WIND SPEED{" "}
@@ -274,8 +274,8 @@ function WeatherInfo() {
                   <path
                     fill="none"
                     stroke="#f0f0f0"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M7.5.5a1.75 1.75 0 0 1 0 3.5h-7m11.25 6.5a1.75 1.75 0 0 0 0-3.5H2m5.25 6.5a1.75 1.75 0 0 0 0-3.5H1.5"
                   />
                 </svg>
@@ -308,7 +308,7 @@ function WeatherInfo() {
               <p className="weather__value">{selectedWeather.wind_gusts}</p>
             </li>
             </div>
-            <div class="row">
+            <div className="row">
             <li className="weather__data weather__data--visibility">
               <h3 className="weather__title">
                 VISIBILITY{" "}
@@ -329,12 +329,12 @@ function WeatherInfo() {
             <li className="weather__data weather__data--wave">
               <h3 className="weather__title">
                 WAVE HEIGHT{" "}
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="none" stroke="#f0f0f0" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10c2.483 0 4.345-3 4.345-3s1.862 3 4.345 3c2.482 0 4.965-3 4.965-3s2.483 3 4.345 3M3 17c2.483 0 4.345-3 4.345-3s1.862 3 4.345 3c2.482 0 4.965-3 4.965-3s2.483 3 4.345 3"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="none" stroke="#f0f0f0" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 10c2.483 0 4.345-3 4.345-3s1.862 3 4.345 3c2.482 0 4.965-3 4.965-3s2.483 3 4.345 3M3 17c2.483 0 4.345-3 4.345-3s1.862 3 4.345 3c2.482 0 4.965-3 4.965-3s2.483 3 4.345 3"/></svg>
               </h3>
               <p className="weather__value">{selectedWeather.wave_height}</p>
             </li>
             </div>
-            <div class="row">
+            <div className="row">
             <li className="weather__data weather__data--precipitation">
               <h3 className="weather__title">
                 PRECIPITATION{" "}

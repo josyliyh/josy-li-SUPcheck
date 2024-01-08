@@ -46,7 +46,6 @@ function LocationInfo() {
 
   const generateGoogleMapsUrl = (apiKey, locationName) => {
     const encodedLocationName = encodeURIComponent(locationName);
-    console.log(`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodedLocationName}`)
     return `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodedLocationName}`;
 
   };
