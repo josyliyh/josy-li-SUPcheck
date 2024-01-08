@@ -106,6 +106,12 @@ Navigate to SUPcheck Directory
 ```
 cd SUPcheck
 ```
+
+Use .env.sample as a template to create Environment File
+- Create a new file named .env in the SUPcheck-api directory.
+- Copy the content of .env.sample into .env.
+- Replace placeholder <YOUR_GOOGLE_MAP_API_KEY> with your API key
+
 Install nodeJS dependencies
 ```
 npm i
