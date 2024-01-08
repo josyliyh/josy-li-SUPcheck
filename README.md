@@ -111,16 +111,21 @@ Run React App in development mode
 npm run dev
 ```
 ## Screenshots
-Location list
-![Location list](./screenshots/location-list.png)
-Single location
-![Single location](./screenshots/single-location.png)
-Weather-mobile
-![Weather-mobile](./screenshots/weather-mobile.png)
-Weather-tablet
-![Weather-tablet](./screenshots/weather-tablet.png)
-Weather-desktop
-![Weather-desktop](./screenshots/weather-desktop.png)
+
+### Location List
+![Location List](./screenshots/location-list.png)
+
+### Single Location
+![Single Location](./screenshots/single-location.png)
+
+### Weather on Mobile
+![Weather on Mobile](./screenshots/weather-mobile.png)
+
+### Weather on Tablet
+![Weather on Tablet](./screenshots/weather-tablet.png)
+
+### Weather on Desktop
+![Weather on Desktop](./screenshots/weather-desktop.png)
 
 
 ## Lessons Learned
