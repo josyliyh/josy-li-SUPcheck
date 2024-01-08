@@ -71,6 +71,10 @@ Use .env.sample as a template to create Environment File
 - Create a new file named .env in the SUPcheck-api directory.
 - Copy the content of .env.sample into .env.
 - Replace placeholders <YOUR_DB_NAME>, <YOUR_DB_USER>, and <YOUR_DB_PASSWORD> with your MySQL database details.
+- Visit the [Google Cloud Console](https://console.cloud.google.com/).
+- Navigate to the API & Services > Credentials section.
+- Click on "Create credentials" and select "API Key" to generate a new API key.
+- Replace placeholder <YOUR_GOOGLE_MAP_API_KEY> with your API key
 
 Install nodeJS dependencies
 ```

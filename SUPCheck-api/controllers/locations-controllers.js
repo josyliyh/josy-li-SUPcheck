@@ -1,6 +1,8 @@
 const axios = require("axios");
 const knex = require("knex")(require("../knexfile"));
+require("dotenv").config();
 const apiKey = process.env.APIKEY;
+
 // Function to get all locations
 const getAllLocations = async (req, res) => {
   try {
