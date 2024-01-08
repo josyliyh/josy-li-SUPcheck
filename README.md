@@ -135,7 +135,11 @@ npm run dev
 ```
 ## Screenshots
 
-![Mockups](./mock-up.png)
+![Location list](./screenshots/location-list.png)
+![Single location](./screenshots/single-location.png)
+![Weather-mobile](./screenshots/weather-mobile.png)
+![Weather-tablet](./screenshots/weather-tablet.png)
+![Weather-desktop](./screenshots/weather-desktop.png)
 
 ## Nice-to-haves
 - Favourite function 

@@ -18,8 +18,8 @@
     width: 100%;
     justify-content: center;
     svg {
-        width: 2rem;
-    height: 1.2rem;
+      width: 2rem;
+      height: 1.2rem;
     }
 
     &--row {
@@ -56,15 +56,13 @@
       align-content: normal;
       padding: 1.5rem 2rem;
       @include tablet {
-  
         flex-direction: row;
-      justify-content: space-around;
+        justify-content: space-around;
       }
     }
     @include box-shadow;
     @include tablet {
       width: 100%;
-
     }
 
     align-items: center;
@@ -108,9 +106,9 @@
       text-align: center;
     }
     &--safety {
-        font-size: 1rem;
-    margin-top: 1.5rem;
-    text-align: center;
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      text-align: center;
     }
   }
   &__list {
@@ -119,9 +117,9 @@
     gap: 0.5rem;
     width: 100%;
     margin: 3rem auto 0;
-@include tablet {
-    width: 80%;
-}
+    @include tablet {
+      width: 80%;
+    }
     @include desktop {
       flex-direction: row;
     }
@@ -167,8 +165,11 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
+  @include tablet {
+    width: 80%;
+  }
 }
 
 .time-bar-wrapper {
