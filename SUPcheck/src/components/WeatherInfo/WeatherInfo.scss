@@ -17,6 +17,10 @@
     flex-direction: column;
     width: 100%;
     justify-content: center;
+    svg {
+        width: 2rem;
+    height: 1.2rem;
+    }
 
     &--row {
       display: flex;
@@ -87,7 +91,7 @@
   &__title {
     font-size: 0.8rem;
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 20%;
     font-weight: 700;
     &--sun {
