@@ -1,4 +1,4 @@
-import "./Footer.scss"
+import "./Footer.scss";
 
 function Footer() {
   return (
@@ -10,14 +10,20 @@ function Footer() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Open-Meteo API
-        </a>{" "}
-        | Created by   <a
+          Open-Meteo
+        </a>
+      </p>
+      <p className="footer__description">
+        Created by{" "}
+        <a
           href="https://www.linkedin.com/in/josyli/"
           target="_blank"
           rel="noopener noreferrer"
-        >Josy Li </a>| For educational purposes only
+        >
+          Josy Li{" "}
+        </a>
       </p>
+      <p className="footer__description">For educational purposes only</p>
     </footer>
   );
 }
