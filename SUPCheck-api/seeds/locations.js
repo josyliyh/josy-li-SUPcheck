@@ -43,7 +43,7 @@
       city: 'Vancouver',
       Latitude: 49.2764,
       Longitude: -123.1550,
-      Rental: false,
+      Rental: true,
       DayPass: false
     },
     {
