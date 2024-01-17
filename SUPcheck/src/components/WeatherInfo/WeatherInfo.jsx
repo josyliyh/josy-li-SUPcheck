@@ -119,8 +119,8 @@ function WeatherInfo() {
 
     if (
       // Conditions for Beginners
-      temperature >= 15 &&
-      temperature <= 29 &&
+      // temperature >= 15 &&
+      // temperature <= 29 &&
       precipitation === 0 &&
       visibility >= 5000 &&
       windSpeed <= 15 &&
@@ -128,11 +128,11 @@ function WeatherInfo() {
       waveHeight <= 0.3 &&
       safeWeatherCodes.includes(weatherCode)
     ) {
-      safety = "Safe for Beginners";
+      safety = "Newbie Friendly";
     } else if (
       // Conditions for Moderate Paddlers
-      temperature >= 10 &&
-      temperature <= 32 &&
+      // temperature >= 10 &&
+      // temperature <= 32 &&
       precipitation <= 4 &&
       visibility >= 3000 &&
       windSpeed <= 25 &&
@@ -153,7 +153,7 @@ function WeatherInfo() {
       // waveHeight <= 1 &&
       safeWeatherCodes.includes(weatherCode)
     ) {
-      safety = "Experienced Paddlers ";
+      safety = "Pro Paddlers Only";
     }
     
     selectedWeather = {
@@ -354,7 +354,7 @@ function WeatherInfo() {
             </li>
             <li className="weather__data weather__data--safety">
               <h3 className="weather__title">
-                SAFETY{" "}
+                SAFETY LEVEL{" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
